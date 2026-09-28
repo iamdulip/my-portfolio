@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සුපුන් ප්‍රනාන්දු | Web Developer Portfolio</title>
+
+    <style>
+        /* --- 1. GENERAL STYLES & VARIABLES --- */
+        html {
+            scroll-behavior: smooth; /* Links ක්ලික් කළ විට Smooth ලෙස Scroll වීම */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #1e293b;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        /* --- 2. NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        body.dark-mode .navbar {
+            background-color: #1e293b;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .theme-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* --- 3. SECTIONS COMMON STYLE --- */
+        section {
+            padding: 90px 20px 50px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background-color: #2563eb;
+            display: block;
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text span {
+            color: #2563eb;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .hero-text p {
+            color: #94a3b8;
+        }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #2563eb;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* --- 5. SKILLS SECTION --- */
+        .skills-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .skill-card {
+            background-color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            font-weight: bold;
+            border-left: 4px solid #2563eb;
+        }
+
+        body.dark-mode .skill-card {
+            background-color: #1e293b;
+        }
+
+        /* --- 6. PROJECTS SECTION --- */
+        .projects-grid {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 280px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+
+        body.dark-mode .project-card {
+            background-color: #1e293b;
+            border-color: #334155;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* --- 7. CONTACT FORM --- */
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode .contact-form {
+            background-color: #1e293b;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- 8. RESPONSIVE DESIGN (MOBILE) --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .projects-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Supun.dev</div>
+        <ul class="nav-links">
+            <li><a href="#hero">මුල් පිටුව</a></li>
+            <li><a href="#skills">කුසලතා</a></li>
+            <li><a href="#projects">ව්‍යාපෘති</a></li>
+            <li><a href="#contact">සම්බන්ධ වන්න</a></li>
+        </ul>
+        <button class="theme-btn" onclick="toggleDarkMode()">🌙 Mode</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero">
+        <div class="hero-text">
+            <h1>ආයුබෝවන්, මම <span>සුපුන්</span></h1>
+            <p>මම නවීන සහ ආකර්ෂණීය වෙබ් අඩවි නිර්මාණය කරන Front-End Web Developer කෙනෙක්මි.</p>
+            <a href="#contact" class="btn-cta">මාව සම්බන්ධ කරගන්න</a>
+        </div>
+        <img src="https://picsum.photos/250" alt="Profile Picture" class="profile-img">
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <h2 class="section-title">තාක්ෂණික කුසලතා</h2>
+        <div class="skills-grid">
+            <div class="skill-card">HTML5 (Structure)</div>
+            <div class="skill-card">CSS3 (Styling & Flexbox)</div>
+            <div class="skill-card">Responsive Web Design</div>
+            <div class="skill-card">JavaScript Basics (Interactivity)</div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2 class="section-title">මගේ ව්‍යාපෘති</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <h3>Profile Card Project</h3>
+                <p>HTML සහ CSS භාවිතයෙන් නිර්මාණය කළ මූලික Profile පිටුව.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Interactive Contact Form</h3>
+                <p>User Inputs පරීක්ෂා කර පණිවුඩ ලබාගන්නා සක්‍රීය ෆෝම් එකක්.</p>
+            </div>
+
+            <div class="project-card">
+                <h3>Responsive Service Landing Page</h3>
+                <p>Mobile Phones සහ Desktop සඳහා එකසේ ගැලපෙන සේ සැකසූ Layout එකක්.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2 class="section-title">සම්බන්ධ වන්න</h2>
+        <div class="contact-form">
+            <form onsubmit="handleForm(event)">
+                <div class="form-group">
+                    <label>ඔබේ නම:</label>
+                    <input type="text" id="name" required placeholder="නම සටහන් කරන්න">
+                </div>
+                <div class="form-group">
+                    <label>විද්‍යුත් තැපෑල (Email):</label>
+                    <input type="email" id="email" required placeholder="example@mail.com">
+                </div>
+                <div class="form-group">
+                    <label>පණිවුඩය:</label>
+                    <textarea rows="4" required placeholder="ඔබේ පණිවුඩය මෙතන ලියන්න..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">පණිවුඩය යවන්න</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // 2. Contact Form Action
+        function handleForm(event) {
+            event.preventDefault(); // Page එක Refresh වීම වැළැක්වීමට
+            let name = document.getElementById('name').value;
+            alert("ස්තූතියි " + name + "! ඔබේ පණිවුඩය මට ලැබුණා.");
+        }
+    </script>
+</body>
+</html>
